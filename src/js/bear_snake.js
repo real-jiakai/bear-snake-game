@@ -6,18 +6,18 @@
 
 // Game constants
 const CELL_SIZE = 15;
-const GRID_WIDTH = 15;
-const GRID_HEIGHT = 15;
-const GAME_SPEED = 180; // ms between updates
+const GRID_WIDTH = 30;
+const GRID_HEIGHT = 30;
+const GAME_SPEED = 150; // ms between updates
 
 // Game variables
 let snake = [
-  { x: 7, y: 7 },
-  { x: 6, y: 7 },
-  { x: 5, y: 7 }
+  { x: 15, y: 15 },
+  { x: 14, y: 15 },
+  { x: 13, y: 15 }
 ]; // Bear body, starting with head and two segments
 let direction = { x: 1, y: 0 }; // Starting direction: right
-let food = { x: 10, y: 7 };
+let food = { x: 20, y: 15 };
 let bonusFood = { x: -1, y: -1 }; // Off screen initially
 let bonusActive = false;
 let bonusTimer = 0;
@@ -51,9 +51,9 @@ function initGame() {
 // Reset game to initial state
 function resetGame() {
   snake = [
-    { x: 7, y: 7 },
-    { x: 6, y: 7 },
-    { x: 5, y: 7 }
+    { x: 15, y: 15 },
+    { x: 14, y: 15 },
+    { x: 13, y: 15 }
   ];
   direction = { x: 1, y: 0 };
   lastDirection = { x: 1, y: 0 };
