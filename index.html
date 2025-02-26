@@ -1,34 +1,22 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PDF贪吃熊游戏 | Bear Snake Game in PDF</title>
+  <title>Bear Snake Game</title>
   <link rel="stylesheet" href="src/css/style.css">
-  <!-- PDF.js for viewing PDFs in browser -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
-  <!-- jsPDF for generating PDFs -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
   <div class="container">
-    <h1>PDF贪吃熊游戏</h1>
-    <p class="subtitle">Bear Snake Game in PDF</p>
+    <h1>Bear Snake Game</h1>
+    <p class="subtitle">A fun twist on the classic Snake game</p>
     
     <div class="instructions">
-      <h3>关于本项目</h3>
-      <p>这是一个可以在PDF文件中玩的贪吃熊游戏。点击下方按钮生成游戏PDF，然后在Adobe Acrobat Reader中打开它。</p>
-      <p><strong>特别说明：</strong>游戏需要在Adobe Acrobat Reader中运行，且必须启用JavaScript功能才能正常玩耍。</p>
-    </div>
-    
-    <div class="generate-pdf">
-      <button id="pdfButton">生成贪吃熊PDF</button>
+      <h3>About This Game</h3>
+      <p>Bear Snake is a variation of the classic Snake game with a cute bear theme. Control the bear, collect food, and grow as long as possible without hitting walls or yourself!</p>
     </div>
     
     <div class="game-container">
-      <h3>网页版贪吃熊预览</h3>
-      <p>这是游戏的网页版，您可以先试玩一下！</p>
-      
       <div class="controls">
         <button id="startButton">Start</button>
         <button id="resetButton">Reset</button>
@@ -49,81 +37,22 @@
       </div>
     </div>
     
-    <div id="pdf-viewer-container" class="pdf-container" style="display: none;">
-      <h3>生成的PDF预览</h3>
-      <p>下载PDF并使用Adobe Acrobat Reader打开以游玩！</p>
-      <iframe id="pdf-viewer" style="width: 100%; height: 100%;"></iframe>
-    </div>
-    
     <div class="instructions">
-      <h3>游戏说明</h3>
+      <h3>How to Play</h3>
       <ul>
-        <li><strong>控制：</strong>使用键盘方向键或WASD键，或点击屏幕上的方向按钮控制贪吃熊移动</li>
-        <li><strong>食物：</strong>收集红色食物使贪吃熊变长并获得10分</li>
-        <li><strong>特殊食物：</strong>金色食物会短暂出现，吃掉可获得50分</li>
-        <li><strong>危险：</strong>避免撞到墙壁或自己的身体</li>
+        <li><strong>Controls:</strong> Use arrow keys or WASD keys, or the on-screen buttons to control the bear's movement</li>
+        <li><strong>Red Food:</strong> Collect red food to grow longer and earn 10 points</li>
+        <li><strong>Golden Food:</strong> Special golden food appears occasionally for 50 bonus points</li>
+        <li><strong>Dangers:</strong> Avoid hitting the walls or your own body</li>
       </ul>
     </div>
     
     <div class="footer">
-      由Claude AI创建 &copy; 2025 PDF贪吃熊游戏 | Bear Snake Game in PDF
+      Made with ❤️ with Claude Code!
     </div>
   </div>
   
-  <!-- Hidden container for the game code to be embedded in PDF -->
-  <script id="bear-snake-code" type="text/plain"></script>
-  
-  <!-- Load the game scripts -->
+  <!-- Load the game script -->
   <script src="src/js/bear_snake.js"></script>
-  <script src="src/js/pdf-generator.js"></script>
-  
-  <script>
-    // Capture the game code to embed in the PDF
-    document.addEventListener('DOMContentLoaded', function() {
-      // Get the bear_snake.js code and store it in the hidden script element
-      fetch('src/js/bear_snake.js')
-        .then(response => response.text())
-        .then(code => {
-          document.getElementById('bear-snake-code').textContent = code;
-        })
-        .catch(error => console.error('Error loading game code:', error));
-      
-      // Set up the PDF generation button
-      document.getElementById('pdfButton').addEventListener('click', function() {
-        // Show loading state
-        this.textContent = '正在生成...';
-        this.disabled = true;
-        
-        // Generate the PDF
-        setTimeout(() => {
-          const pdfBlob = generateBearSnakePDF();
-          
-          if (pdfBlob) {
-            // Create download link
-            const pdfUrl = URL.createObjectURL(pdfBlob);
-            const downloadLink = document.createElement('a');
-            downloadLink.href = pdfUrl;
-            downloadLink.download = 'bear_snake_game.pdf';
-            
-            // Show the PDF in the viewer
-            const pdfViewer = document.getElementById('pdf-viewer');
-            pdfViewer.src = pdfUrl;
-            document.getElementById('pdf-viewer-container').style.display = 'block';
-            
-            // Trigger download
-            downloadLink.click();
-            
-            // Reset button state
-            this.textContent = '生成贪吃熊PDF';
-            this.disabled = false;
-          } else {
-            alert('生成PDF时出错，请重试。');
-            this.textContent = '生成贪吃熊PDF';
-            this.disabled = false;
-          }
-        }, 500);
-      });
-    });
-  </script>
 </body>
 </html>

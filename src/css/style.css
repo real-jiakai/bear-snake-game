@@ -126,34 +126,6 @@ button:hover {
   margin-top: 0;
 }
 
-.pdf-container {
-  width: 100%;
-  height: 800px;
-  border: 1px solid #ccc;
-  margin: 20px 0;
-}
-
-.generate-pdf {
-  margin: 20px 0;
-  text-align: center;
-}
-
-#pdfButton {
-  padding: 12px 25px;
-  background-color: #CD853F;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 16px;
-  transition: background-color 0.2s;
-}
-
-#pdfButton:hover {
-  background-color: #8B4513;
-}
-
 .footer {
   margin-top: 30px;
   text-align: center;

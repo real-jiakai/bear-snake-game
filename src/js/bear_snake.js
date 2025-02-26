@@ -1,8 +1,7 @@
 /**
- * Bear Snake Game for PDF
+ * Bear Snake Game
  * 
- * A variation of the classic Snake game with a bear theme,
- * optimized for embedding in PDF and running in Adobe Acrobat Reader
+ * A variation of the classic Snake game with a bear theme.
  */
 
 // Game constants
@@ -203,6 +202,7 @@ function isCollision(position) {
   }
   
   // Self collision (check if position exists in snake body)
+  // Skip the head since we're checking the new position
   for (let i = 0; i < snake.length; i++) {
     if (snake[i].x === position.x && snake[i].y === position.y) {
       return true;
