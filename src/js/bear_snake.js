@@ -276,38 +276,42 @@ function drawGame() {
   ctx.fillStyle = '#f0f0f0';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   
+  // Calculate cell size based on canvas dimensions to fill the entire canvas
+  const cellWidth = canvas.width / GRID_WIDTH;
+  const cellHeight = canvas.height / GRID_HEIGHT;
+  
   // Draw grid (optional)
   ctx.strokeStyle = '#e0e0e0';
   for (let i = 0; i <= GRID_WIDTH; i++) {
     ctx.beginPath();
-    ctx.moveTo(i * CELL_SIZE, 0);
-    ctx.lineTo(i * CELL_SIZE, canvas.height);
+    ctx.moveTo(i * cellWidth, 0);
+    ctx.lineTo(i * cellWidth, canvas.height);
     ctx.stroke();
   }
   for (let i = 0; i <= GRID_HEIGHT; i++) {
     ctx.beginPath();
-    ctx.moveTo(0, i * CELL_SIZE);
-    ctx.lineTo(canvas.width, i * CELL_SIZE);
+    ctx.moveTo(0, i * cellHeight);
+    ctx.lineTo(canvas.width, i * cellHeight);
     ctx.stroke();
   }
   
   // Draw food (red apple)
   ctx.fillStyle = '#ff0000';
   ctx.fillRect(
-    food.x * CELL_SIZE, 
-    food.y * CELL_SIZE, 
-    CELL_SIZE, 
-    CELL_SIZE
+    food.x * cellWidth, 
+    food.y * cellHeight, 
+    cellWidth, 
+    cellHeight
   );
   
   // Draw bonus food (gold)
   if (bonusActive) {
     ctx.fillStyle = '#ffd700';
     ctx.fillRect(
-      bonusFood.x * CELL_SIZE, 
-      bonusFood.y * CELL_SIZE, 
-      CELL_SIZE, 
-      CELL_SIZE
+      bonusFood.x * cellWidth, 
+      bonusFood.y * cellHeight, 
+      cellWidth, 
+      cellHeight
     );
   }
   
@@ -316,19 +320,19 @@ function drawGame() {
     // Head is brown, body is light brown
     ctx.fillStyle = index === 0 ? '#8B4513' : '#CD853F';
     ctx.fillRect(
-      segment.x * CELL_SIZE, 
-      segment.y * CELL_SIZE, 
-      CELL_SIZE, 
-      CELL_SIZE
+      segment.x * cellWidth, 
+      segment.y * cellHeight, 
+      cellWidth, 
+      cellHeight
     );
     
     // Add a border to each segment
     ctx.strokeStyle = '#5D2E0D';
     ctx.strokeRect(
-      segment.x * CELL_SIZE, 
-      segment.y * CELL_SIZE, 
-      CELL_SIZE, 
-      CELL_SIZE
+      segment.x * cellWidth, 
+      segment.y * cellHeight, 
+      cellWidth, 
+      cellHeight
     );
     
     // Add bear features to the head
@@ -340,33 +344,33 @@ function drawGame() {
       let leftEyeX, leftEyeY, rightEyeX, rightEyeY;
       
       if (direction.x === 1) { // facing right
-        leftEyeX = segment.x * CELL_SIZE + CELL_SIZE * 0.7;
-        leftEyeY = segment.y * CELL_SIZE + CELL_SIZE * 0.3;
-        rightEyeX = segment.x * CELL_SIZE + CELL_SIZE * 0.7;
-        rightEyeY = segment.y * CELL_SIZE + CELL_SIZE * 0.7;
+        leftEyeX = segment.x * cellWidth + cellWidth * 0.7;
+        leftEyeY = segment.y * cellHeight + cellHeight * 0.3;
+        rightEyeX = segment.x * cellWidth + cellWidth * 0.7;
+        rightEyeY = segment.y * cellHeight + cellHeight * 0.7;
       } else if (direction.x === -1) { // facing left
-        leftEyeX = segment.x * CELL_SIZE + CELL_SIZE * 0.3;
-        leftEyeY = segment.y * CELL_SIZE + CELL_SIZE * 0.3;
-        rightEyeX = segment.x * CELL_SIZE + CELL_SIZE * 0.3;
-        rightEyeY = segment.y * CELL_SIZE + CELL_SIZE * 0.7;
+        leftEyeX = segment.x * cellWidth + cellWidth * 0.3;
+        leftEyeY = segment.y * cellHeight + cellHeight * 0.3;
+        rightEyeX = segment.x * cellWidth + cellWidth * 0.3;
+        rightEyeY = segment.y * cellHeight + cellHeight * 0.7;
       } else if (direction.y === -1) { // facing up
-        leftEyeX = segment.x * CELL_SIZE + CELL_SIZE * 0.3;
-        leftEyeY = segment.y * CELL_SIZE + CELL_SIZE * 0.3;
-        rightEyeX = segment.x * CELL_SIZE + CELL_SIZE * 0.7;
-        rightEyeY = segment.y * CELL_SIZE + CELL_SIZE * 0.3;
+        leftEyeX = segment.x * cellWidth + cellWidth * 0.3;
+        leftEyeY = segment.y * cellHeight + cellHeight * 0.3;
+        rightEyeX = segment.x * cellWidth + cellWidth * 0.7;
+        rightEyeY = segment.y * cellHeight + cellHeight * 0.3;
       } else { // facing down
-        leftEyeX = segment.x * CELL_SIZE + CELL_SIZE * 0.3;
-        leftEyeY = segment.y * CELL_SIZE + CELL_SIZE * 0.7;
-        rightEyeX = segment.x * CELL_SIZE + CELL_SIZE * 0.7;
-        rightEyeY = segment.y * CELL_SIZE + CELL_SIZE * 0.7;
+        leftEyeX = segment.x * cellWidth + cellWidth * 0.3;
+        leftEyeY = segment.y * cellHeight + cellHeight * 0.7;
+        rightEyeX = segment.x * cellWidth + cellWidth * 0.7;
+        rightEyeY = segment.y * cellHeight + cellHeight * 0.7;
       }
       
       ctx.beginPath();
-      ctx.arc(leftEyeX, leftEyeY, CELL_SIZE * 0.1, 0, Math.PI * 2);
+      ctx.arc(leftEyeX, leftEyeY, cellWidth * 0.1, 0, Math.PI * 2);
       ctx.fill();
       
       ctx.beginPath();
-      ctx.arc(rightEyeX, rightEyeY, CELL_SIZE * 0.1, 0, Math.PI * 2);
+      ctx.arc(rightEyeX, rightEyeY, cellWidth * 0.1, 0, Math.PI * 2);
       ctx.fill();
     }
   });
